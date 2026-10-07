@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tic Tac Toe</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Animated background circles -->
+    <div class="background">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
+    <!-- =========================
+         GAME AREA
+    ========================== -->
+
+    <main class="game-wrapper">
+
+        <!-- Game title -->
+        <div class="header">
+            <p class="small-title">CLASSIC GAME</p>
+
+            <h1>
+                Tic <span>Tac</span> Toe
+            </h1>
+
+            <p class="subtitle">
+                Challenge your opponent and get three in a row!
+            </p>
+        </div>
+
+
+        <!-- Turn indicator -->
+        <div class="turn-card">
+
+            <div class="turn-dot"></div>
+
+            <p>
+                <span id="turn-text">Player O</span>'s Turn
+            </p>
+
+        </div>
+
+
+        <!-- Game board -->
+        <div class="game-board">
+
+            <button class="box" data-index="0"></button>
+            <button class="box" data-index="1"></button>
+            <button class="box" data-index="2"></button>
+
+            <button class="box" data-index="3"></button>
+            <button class="box" data-index="4"></button>
+            <button class="box" data-index="5"></button>
+
+            <button class="box" data-index="6"></button>
+            <button class="box" data-index="7"></button>
+            <button class="box" data-index="8"></button>
+
+        </div>
+
+
+        <!-- Reset button -->
+        <button id="reset-btn">
+            <span>↻</span>
+            Reset Game
+        </button>
+
+    </main>
+
+
+    <!-- =========================
+         RESULT MODAL
+    ========================== -->
+
+    <div class="result-overlay hide">
+
+        <div class="result-card">
+
+            <div class="trophy">
+                🏆
+            </div>
+
+            <p class="result-label">
+                GAME OVER
+            </p>
+
+            <h2 id="msg">
+                Congratulations!
+            </h2>
+
+            <p class="result-subtitle">
+                Great game! Ready for another round?
+            </p>
+
+            <button id="new-btn">
+                Play Again
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+
+</body>
+</html>

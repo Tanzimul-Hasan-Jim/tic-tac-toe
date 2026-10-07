@@ -1,0 +1,690 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    min-height: 100vh;
+
+    font-family: "Poppins", sans-serif;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #312e81,
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            #7e22ce,
+            transparent 40%
+        ),
+        #09090f;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   ANIMATED BACKGROUND
+========================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+.background span {
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    border-radius: 50%;
+
+    background: rgba(139, 92, 246, 0.08);
+
+    filter: blur(10px);
+
+    animation: float 12s infinite ease-in-out;
+}
+
+
+/* Different positions */
+
+.background span:nth-child(1) {
+    top: -100px;
+    left: -100px;
+}
+
+.background span:nth-child(2) {
+    top: 30%;
+    right: -120px;
+
+    animation-delay: 2s;
+}
+
+.background span:nth-child(3) {
+    bottom: -120px;
+    left: 20%;
+
+    animation-delay: 4s;
+}
+
+.background span:nth-child(4) {
+    top: 20%;
+    left: 40%;
+
+    animation-delay: 6s;
+}
+
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(40px, -40px) scale(1.15);
+    }
+}
+
+
+/* =========================================
+   MAIN GAME
+========================================= */
+
+.game-wrapper {
+    position: relative;
+    z-index: 2;
+
+    width: min(92vw, 500px);
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 30px;
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.4);
+
+    animation: appear 0.7s ease;
+}
+
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.small-title {
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    color: #a78bfa;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+
+h1 {
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+
+    font-weight: 800;
+
+    line-height: 1.1;
+
+    letter-spacing: -2px;
+}
+
+
+h1 span {
+    color: #a78bfa;
+}
+
+
+.subtitle {
+    margin-top: 10px;
+
+    color: #a1a1aa;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   TURN INDICATOR
+========================================= */
+
+.turn-card {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin: 25px 0 20px;
+
+    padding: 9px 18px;
+
+    border-radius: 50px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.turn-card p {
+    font-size: 13px;
+
+    color: #d4d4d8;
+}
+
+
+#turn-text {
+    color: #c4b5fd;
+
+    font-weight: 700;
+}
+
+
+.turn-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #a78bfa;
+
+    box-shadow: 0 0 12px #a78bfa;
+
+    animation: pulse 1.5s infinite;
+}
+
+
+@keyframes pulse {
+
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   GAME BOARD
+========================================= */
+
+.game-board {
+    width: min(80vw, 360px);
+
+    aspect-ratio: 1;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 12px;
+
+    padding: 12px;
+
+    border-radius: 22px;
+
+    background: rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================
+   GAME BOX
+========================================= */
+
+.box {
+    position: relative;
+
+    border: none;
+
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: clamp(2.5rem, 12vw, 4rem);
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Hover effect */
+
+.box:hover:not(:disabled) {
+    transform: translateY(-4px);
+
+    background: rgba(167, 139, 250, 0.15);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25);
+
+    border-color: rgba(167, 139, 250, 0.4);
+}
+
+
+/* Click effect */
+
+.box:active:not(:disabled) {
+    transform: scale(0.94);
+}
+
+
+/* O */
+
+.box.o {
+    color: #c4b5fd;
+
+    text-shadow:
+        0 0 20px rgba(196, 181, 253, 0.7);
+
+    animation: markAppear 0.3s ease;
+}
+
+
+/* X */
+
+.box.x {
+    color: #67e8f9;
+
+    text-shadow:
+        0 0 20px rgba(103, 232, 249, 0.7);
+
+    animation: markAppear 0.3s ease;
+}
+
+
+@keyframes markAppear {
+
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   WINNING BOX
+========================================= */
+
+.box.winner {
+    background: rgba(167, 139, 250, 0.25);
+
+    border-color: #a78bfa;
+
+    box-shadow:
+        0 0 25px rgba(167, 139, 250, 0.6);
+
+    animation: winnerGlow 0.8s infinite alternate;
+}
+
+
+@keyframes winnerGlow {
+
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.06);
+    }
+}
+
+
+/* =========================================
+   RESET BUTTON
+========================================= */
+
+#reset-btn {
+    margin-top: 25px;
+
+    padding: 12px 24px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 50px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #e4e4e7;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+#reset-btn span {
+    font-size: 18px;
+
+    margin-right: 5px;
+}
+
+
+#reset-btn:hover {
+    background: rgba(167, 139, 250, 0.2);
+
+    transform: translateY(-2px);
+
+    border-color: #a78bfa;
+}
+
+
+/* =========================================
+   RESULT OVERLAY
+========================================= */
+
+.result-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(5, 5, 10, 0.75);
+
+    backdrop-filter: blur(12px);
+
+    animation: fadeIn 0.3s ease;
+}
+
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   RESULT CARD
+========================================= */
+
+.result-card {
+    width: min(90vw, 400px);
+
+    padding: 45px 30px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(124, 58, 237, 0.25),
+            rgba(30, 27, 75, 0.8)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.5);
+
+    animation: resultPop 0.5s ease;
+}
+
+
+@keyframes resultPop {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.7) translateY(30px);
+    }
+
+    70% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Trophy */
+
+.trophy {
+    font-size: 65px;
+
+    margin-bottom: 15px;
+
+    animation: trophyBounce 1s infinite alternate;
+}
+
+
+@keyframes trophyBounce {
+
+    from {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    to {
+        transform: translateY(-10px) rotate(5deg);
+    }
+}
+
+
+/* Result label */
+
+.result-label {
+    color: #a78bfa;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    font-weight: 700;
+}
+
+
+/* Result title */
+
+#msg {
+    margin-top: 8px;
+
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+
+    font-weight: 800;
+}
+
+
+/* Result subtitle */
+
+.result-subtitle {
+    margin-top: 10px;
+
+    color: #a1a1aa;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   NEW GAME BUTTON
+========================================= */
+
+#new-btn {
+    margin-top: 25px;
+
+    width: 100%;
+
+    padding: 14px 20px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #7c3aed,
+        #a855f7
+    );
+
+    color: white;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(124, 58, 237, 0.3);
+
+    transition: 0.2s ease;
+}
+
+
+#new-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 30px rgba(124, 58, 237, 0.45);
+}
+
+
+#new-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   HIDE
+========================================= */
+
+.hide {
+    display: none;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 500px) {
+
+    .game-wrapper {
+        padding: 28px 15px;
+
+        border-radius: 25px;
+    }
+
+    .game-board {
+        gap: 8px;
+
+        padding: 8px;
+
+        border-radius: 18px;
+    }
+
+    .box {
+        border-radius: 12px;
+    }
+
+    .subtitle {
+        font-size: 12px;
+    }
+}
